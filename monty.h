@@ -11,6 +11,10 @@
 #include <unistd.h>
 #include <string.h>
 
+/* GLOBAL VARS */
+
+char *buff;
+
 /* STRUCTURES */
 
 /**
@@ -46,7 +50,25 @@ typedef struct instruction_s
 
 /* PROTOTYPES */
 
+/* main functions */
 void handle(char *file);
+void (*check_opcodes(void))(stack_t **, unsigned int);
+
+/* string functions*/
 char **_split(char *str, char *sep);
+
+/* integers functions */
+int _atoi(void);
+
+/* handle functions */
+void push(stack_t **stack, unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
+void swap(stack_t **stack, unsigned int line_number);
+void add(stack_t **stack, unsigned int line_number);
+
+/* print functions */
+void pall(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int line_number);
+void nop(stack_t **stack, unsigned int line_number);
 
 #endif
