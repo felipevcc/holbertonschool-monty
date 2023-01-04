@@ -6,19 +6,20 @@
  * @line_number: file line number
  */
 
-void push(stack_t **stack, unsigned int line_number)
+void push(stack_t **stack)
 {
+	char **split_buff;
 	int num;
 	stack_t *new;
-	(void)line_number;
 
 	new = malloc(sizeof(stack_t));
 	if (!new)
 		exit(EXIT_FAILURE);
 
-	num = atoi(buff);
+	split_buff = _split(buff, " ");
 
-	printf("atoi: %i\n", num);
+	num = _atoi(split_buff[1]);
+
 	new->n = num;
 	new->prev = NULL;
 	new->next = *stack;
@@ -34,7 +35,7 @@ void push(stack_t **stack, unsigned int line_number)
  * @line_number: file line number
  */
 
-void pop(stack_t **stack, unsigned int line_number)
+void pop(stack_t **stack)
 {
 	printf("d");
 }
@@ -45,7 +46,7 @@ void pop(stack_t **stack, unsigned int line_number)
  * @line_number: file line number
  */
 
-void swap(stack_t **stack, unsigned int line_number)
+void swap(stack_t **stack)
 {
 	printf("d");
 }
@@ -56,7 +57,7 @@ void swap(stack_t **stack, unsigned int line_number)
  * @line_number: file line number
  */
 
-void add(stack_t **stack, unsigned int line_number)
+void add(stack_t **stack)
 {
 	printf("d");
 }

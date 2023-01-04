@@ -9,7 +9,7 @@ void handle(char *file)
 {
 	FILE *fd;
 	size_t read_size = 0;
-	void (*opcode_func)(stack_t **, unsigned int);
+	void (*opcode_func)(stack_t **);
 	int line_number = 0;
 	stack_t *head;
 	stack_t *nodes_stack;
@@ -32,9 +32,9 @@ void handle(char *file)
 			exit(EXIT_FAILURE);
 		}
 		if (line_number == 0)
-			push(&head, line_number);
+			push(&head);
 		else
-			opcode_func(&head, line_number);
+			opcode_func(&head);
 		line_number++;
 	}
 	free(buff);

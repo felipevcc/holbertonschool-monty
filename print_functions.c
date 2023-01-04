@@ -6,7 +6,7 @@
  * @line_number: file line number
  */
 
-void pall(stack_t **stack, unsigned int line_number)
+void pall(stack_t **stack)
 {
 	while (*stack)
 	{
@@ -21,9 +21,9 @@ void pall(stack_t **stack, unsigned int line_number)
  * @line_number: file line number
  */
 
-void pint(stack_t **stack, unsigned int line_number)
+void pint(stack_t **stack)
 {
-	printf("d");
+	printf("%i\n", (*stack)->n);
 }
 
 /**
@@ -32,7 +32,7 @@ void pint(stack_t **stack, unsigned int line_number)
  * @line_number: file line number
  */
 
-void nop(stack_t **stack, unsigned int line_number)
+void nop(stack_t **stack)
 {
 	printf("d");
 }
