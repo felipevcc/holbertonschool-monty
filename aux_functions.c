@@ -16,9 +16,11 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 		return (NULL);
 
 	ptr = malloc(nmemb * size);
-
-	if (ptr == NULL)
-		return (NULL);
+	if (!ptr)
+	{
+		dprintf(STDERR_FILENO, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
 
 	for (; index < (nmemb * size); index++)
 		ptr[index] = 0;
@@ -29,17 +31,26 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 /**
  * _atoi - function converts a string to integer
  * @str: string to convert
+ * @line_number: file line number
  * Return: int
  */
 
-int _atoi(char *str)
+int _atoi(char *str, unsigned int line_number)
 {
 	int num = 0, i = 0;
+	unsigned int valid_nums = 0;
 
-	while (str[i] && (str[i] >= '0' && str[i] <= '9'))
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
 	{
 		num = num * 10 + (str[i] - '0');
+		valid_nums++;
 		i++;
+	}
+
+	if (valid_nums != strlen(str) - 1)
+	{
+		dprintf(STDERR_FILENO, "L%i: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
 	}
 
 	return (num);
@@ -63,7 +74,8 @@ char **_split(char *str, char *sep)
 	if (!split_str)
 	{
 		free(split_str);
-		return (NULL);
+		dprintf(STDERR_FILENO, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
 	}
 
 	while (aux)

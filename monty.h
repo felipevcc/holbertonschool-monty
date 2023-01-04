@@ -45,29 +45,29 @@ typedef struct stack_s
 typedef struct instruction_s
 {
 	char *opcode;
-	void (*f)(stack_t **stack);
+	void (*f)(stack_t **stack, unsigned int);
 } instruction_t;
 
 /* PROTOTYPES */
 
 /* main functions */
 void handle(char *file);
-void (*check_opcodes(void))(stack_t **);
+void (*check_opcodes(void))(stack_t **, unsigned int);
 
 /* aux functions*/
 void *_calloc(unsigned int nmemb, unsigned int size);
 char **_split(char *str, char *sep);
-int _atoi(char *str);
+int _atoi(char *str, unsigned int line_number);
 
 /* handle functions */
-void push(stack_t **stack);
-void pop(stack_t **stack);
-void swap(stack_t **stack);
-void add(stack_t **stack);
+void push(stack_t **stack, unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
+void swap(stack_t **stack, unsigned int line_number);
+void add(stack_t **stack, unsigned int line_number);
 
 /* print functions */
-void pall(stack_t **stack);
-void pint(stack_t **stack);
-void nop(stack_t **stack);
+void pall(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int line_number);
+void nop(stack_t **stack, unsigned int line_number);
 
 #endif

@@ -9,7 +9,7 @@ void handle(char *file)
 {
 	FILE *fd;
 	size_t read_size = 0;
-	void (*opcode_func)(stack_t **);
+	void (*opcode_func)(stack_t **, unsigned int);
 	int line_number = 0;
 	stack_t *head;
 
@@ -27,13 +27,13 @@ void handle(char *file)
 		opcode_func = check_opcodes();
 		if (opcode_func == NULL)
 		{
-			dprintf(STDERR_FILENO, "L%i: Unknown instruction %s\n", line_number, buff);
+			dprintf(STDERR_FILENO, "L%i: unknown instruction %s\n", line_number, buff);
 			exit(EXIT_FAILURE);
 		}
 		if (line_number == 0)
-			push(&head);
+			push(&head, line_number);
 		else
-			opcode_func(&head);
+			opcode_func(&head, line_number);
 		line_number++;
 	}
 	free(buff);

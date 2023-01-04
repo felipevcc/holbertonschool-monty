@@ -3,9 +3,10 @@
 /**
  * push - adds a node at stack
  * @stack: nodes
+ * @line_number: file line number
  */
 
-void push(stack_t **stack)
+void push(stack_t **stack, unsigned int line_number)
 {
 	char **split_buff;
 	int num;
@@ -13,11 +14,14 @@ void push(stack_t **stack)
 
 	new = malloc(sizeof(stack_t));
 	if (!new)
+	{
+		dprintf(STDERR_FILENO, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
+	}
 
 	split_buff = _split(buff, " ");
 
-	num = _atoi(split_buff[1]);
+	num = _atoi(split_buff[1], line_number);
 
 	new->n = num;
 	new->prev = NULL;
@@ -31,14 +35,18 @@ void push(stack_t **stack)
 /**
  * pop - removes the top node of the stack
  * @stack: nodes
+ * @line_number: file line number
  */
 
-void pop(stack_t **stack)
+void pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *delete = *stack;
 
 	if (!*stack || !stack)
+	{
+		dprintf(STDERR_FILENO, "L%i: can't pop an empty stack\n", line_number);
 		exit(EXIT_FAILURE);
+	}
 
 	if ((*stack)->next)
 	{
@@ -56,12 +64,19 @@ void pop(stack_t **stack)
 /**
  * swap - swaps the top two nodes of the stack
  * @stack: nodes
+ * @line_number: file line number
  */
 
-void swap(stack_t **stack)
+void swap(stack_t **stack, unsigned int line_number)
 {
 	stack_t *head = *stack;
 	stack_t *aux = *stack;
+
+	if (!head->next)
+	{
+		dprintf(STDERR_FILENO, "L%i: can't swap, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 
 	head = head->next;
 	head->prev = NULL;
@@ -76,17 +91,24 @@ void swap(stack_t **stack)
 /**
  * add - adds the top two nodes of the stack
  * @stack: nodes
+ * @line_number: file line number
  */
 
-void add(stack_t **stack)
+void add(stack_t **stack, unsigned int line_number)
 {
 	stack_t *head = *stack;
+
+	if (!head->next)
+	{
+		dprintf(STDERR_FILENO, "L%i: can't add, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 
 	/* result in node 2 */
 	(head->next)->n += head->n;
 
 	/* remove node 1 */
-	pop(&head);
+	pop(&head, line_number);
 
 	/* update stack */
 	*stack = head;

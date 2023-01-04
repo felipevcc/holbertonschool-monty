@@ -5,7 +5,7 @@
  * Return: opcode (char *)
  */
 
-void (*check_opcodes(void))(stack_t **)
+void (*check_opcodes(void))(stack_t **, unsigned int)
 {
 	int i = 0, j;
 	int valid_opcode;
