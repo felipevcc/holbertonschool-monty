@@ -10,13 +10,13 @@ void handle(char *file)
 	FILE *fd;
 	size_t read_size = 0;
 	void (*opcode_func)(stack_t **, unsigned int);
-	int line_number = 0;
+	int line_number = 1;
 	stack_t *head;
 
 	fd = fopen(file, "r+");
 	if (!fd)
 	{
-		dprintf(STDERR_FILENO, "Error: Can`t open file %s\n", file);
+		dprintf(STDERR_FILENO, "Error: Can't open file %s\n", file);
 		exit(EXIT_FAILURE);
 	}
 
@@ -30,10 +30,12 @@ void handle(char *file)
 			dprintf(STDERR_FILENO, "L%i: unknown instruction %s\n", line_number, buff);
 			exit(EXIT_FAILURE);
 		}
-		if (line_number == 0)
+		/*
+		if (line_number == 1)
 			push(&head, line_number);
 		else
-			opcode_func(&head, line_number);
+			opcode_func(&head, line_number);*/
+		opcode_func(&head, line_number);
 		line_number++;
 	}
 	free(buff);
