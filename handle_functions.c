@@ -74,7 +74,7 @@ void swap(stack_t **stack, unsigned int line_number)
 	stack_t *head = *stack;
 	stack_t *aux = *stack;
 
-	if (!head->next)
+	if (!*stack || !stack || !head->next)
 	{
 		dprintf(STDERR_FILENO, "L%i: can't swap, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
@@ -100,7 +100,7 @@ void add(stack_t **stack, unsigned int line_number)
 {
 	stack_t *head = *stack;
 
-	if (!head->next)
+	if (!*stack || !stack || !head->next)
 	{
 		dprintf(STDERR_FILENO, "L%i: can't add, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
