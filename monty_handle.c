@@ -12,7 +12,6 @@ void handle(char *file)
 	void (*opcode_func)(stack_t **);
 	int line_number = 0;
 	stack_t *head;
-	stack_t *nodes_stack;
 
 	fd = fopen(file, "r+");
 	if (!fd)

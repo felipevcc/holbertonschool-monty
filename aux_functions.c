@@ -30,12 +30,11 @@ void *_calloc(unsigned int nmemb, unsigned int size)
  * _atoi - function converts a string to integer
  * @str: string to convert
  * Return: int
-*/
+ */
 
 int _atoi(char *str)
 {
-	int num = 0;
-	int i = 0;
+	int num = 0, i = 0;
 
 	while (str[i] && (str[i] >= '0' && str[i] <= '9'))
 	{
@@ -43,7 +42,7 @@ int _atoi(char *str)
 		i++;
 	}
 
-    return (num);
+	return (num);
 }
 
 /**

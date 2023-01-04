@@ -2,7 +2,6 @@
 
 /**
  * check_opcodes - checks a valid opcode in the line
- * @buff: file line
  * Return: opcode (char *)
  */
 

@@ -3,7 +3,6 @@
 /**
  * push - adds a node at stack
  * @stack: nodes
- * @line_number: file line number
  */
 
 void push(stack_t **stack)
@@ -32,32 +31,63 @@ void push(stack_t **stack)
 /**
  * pop - removes the top node of the stack
  * @stack: nodes
- * @line_number: file line number
  */
 
 void pop(stack_t **stack)
 {
-	printf("d");
+	stack_t *delete = *stack;
+
+	if (!*stack || !stack)
+		exit(EXIT_FAILURE);
+
+	if ((*stack)->next)
+	{
+		*stack = delete->next;
+		(*stack)->prev = NULL;
+		free(delete);
+	}
+	else
+	{
+		free(*stack);
+		*stack = NULL;
+	}
 }
 
 /**
  * swap - swaps the top two nodes of the stack
  * @stack: nodes
- * @line_number: file line number
  */
 
 void swap(stack_t **stack)
 {
-	printf("d");
+	stack_t *head = *stack;
+	stack_t *aux = *stack;
+
+	head = head->next;
+	head->prev = NULL;
+
+	aux->next = head->next;
+	head->next = aux;
+	(head->next)->prev = head;
+
+	*stack = head;
 }
 
 /**
  * add - adds the top two nodes of the stack
  * @stack: nodes
- * @line_number: file line number
  */
 
 void add(stack_t **stack)
 {
-	printf("d");
+	stack_t *head = *stack;
+
+	/* result in node 2 */
+	(head->next)->n += head->n;
+
+	/* remove node 1 */
+	pop(&head);
+
+	/* update stack */
+	*stack = head;
 }

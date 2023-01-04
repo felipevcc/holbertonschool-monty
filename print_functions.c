@@ -3,7 +3,6 @@
 /**
  * pall - prints all nodes
  * @stack: nodes
- * @line_number: file line number
  */
 
 void pall(stack_t **stack)
@@ -18,7 +17,6 @@ void pall(stack_t **stack)
 /**
  * pint - prints a node
  * @stack: nodes
- * @line_number: file line number
  */
 
 void pint(stack_t **stack)
@@ -29,10 +27,10 @@ void pint(stack_t **stack)
 /**
  * nop -  doesn’t do anything.
  * @stack: nodes
- * @line_number: file line number
  */
 
 void nop(stack_t **stack)
 {
-	printf("d");
+	(void)stack;
+	printf(" ");
 }
