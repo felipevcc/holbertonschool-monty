@@ -84,6 +84,5 @@ char **_split(char *str, char *sep)
 		aux = strtok(NULL, sep);
 		i++;
 	}
-	free(split_str);
 	return (split_str);
 }

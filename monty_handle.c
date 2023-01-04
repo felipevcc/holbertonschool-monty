@@ -30,14 +30,10 @@ void handle(char *file)
 			dprintf(STDERR_FILENO, "L%i: unknown instruction %s\n", line_number, buff);
 			exit(EXIT_FAILURE);
 		}
-		/*
-		if (line_number == 1)
-			push(&head, line_number);
-		else
-			opcode_func(&head, line_number);*/
 		opcode_func(&head, line_number);
 		line_number++;
 	}
 	free(buff);
+	free(head);
 	fclose(fd);
 }

@@ -36,7 +36,8 @@ void (*check_opcodes(void))(stack_t **, unsigned int)
 			}
 			j++;
 		}
-		if (valid_opcode == 1 && (buff[j] == '\0' || buff[j] == ' '))
+		if (valid_opcode == 1 && (buff[j] == '\n'
+			|| buff[j] == ' ' || buff[j] == '\0'))
 			break;
 		i++;
 	}
