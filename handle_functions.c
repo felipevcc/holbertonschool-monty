@@ -32,7 +32,6 @@ void push(stack_t **stack, unsigned int line_number)
 		(*stack)->prev = new;
 	*stack = new;
 	free(split_buff);
-	/*free(*stack);*/
 }
 
 /**

@@ -58,6 +58,7 @@ void (*check_opcodes(void))(stack_t **, unsigned int);
 void *_calloc(unsigned int nmemb, unsigned int size);
 char **_split(char *str, char *sep);
 int _atoi(char *str, unsigned int line_number);
+void free_stack(stack_t *head);
 
 /* handle functions */
 void push(stack_t **stack, unsigned int line_number);
